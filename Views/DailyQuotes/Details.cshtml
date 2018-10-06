@@ -1,0 +1,33 @@
+﻿@model DailyPerformanceReportAuto.Models.DailyQuote
+
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DailyQuote</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(model => model.QuoteSource)</dt>
+        <dd>@Html.DisplayFor(model => model.QuoteSource)</dd>
+        <dt>@Html.DisplayNameFor(model => model.QuoteType)</dt>
+        <dd>@Html.DisplayFor(model => model.QuoteType)</dd>
+        <dt>@Html.DisplayNameFor(model => model.Date)</dt>
+        <dd>@Html.DisplayFor(model => model.Date)</dd>
+        <dt>@Html.DisplayNameFor(model => model.Value)</dt>
+        <dd>@Html.DisplayFor(model => model.Value)</dd>
+        <dt>@Html.DisplayNameFor(model => model.Comments)</dt>
+        <dd>@Html.DisplayFor(model => model.Comments)</dd>
+    </dl>
+</div>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+

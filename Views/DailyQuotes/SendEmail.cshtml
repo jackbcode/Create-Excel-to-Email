@@ -1,0 +1,1335 @@
+﻿@{
+    //Confused
+    List<string> _CTQDatestring = (List<string>)ViewBag._CTQDatestring;
+    List<string> _CTQ = (List<string>)ViewBag._CTQ;
+    List<string> _PTQ = (List<string>)ViewBag._PTQ;
+    List<string> _CTopQ = (List<string>)ViewBag._CTopQ;
+    List<string> _CTopQP = (List<string>)ViewBag._CTopQP;
+    List<string> _CTopHIP = (List<string>)ViewBag._CTopHIP;
+    List<string> _CQBP = (List<string>)ViewBag._CQBP;
+
+    //Go Compare
+    List<string> _GTQ = (List<string>)ViewBag._GTQ;
+    List<string> _GPQ = (List<string>)ViewBag._GPQ;
+    List<string> _GTopQ = (List<string>)ViewBag._GTopQ;
+    List<string> _GTopQP = (List<string>)ViewBag._GTopQP;
+    List<string> _GTopHIP = (List<string>)ViewBag._GTopHIP;
+    List<string> _GQBP = (List<string>)ViewBag._GQBP;
+
+    //Compare The Market
+    List<string> _CTMCE = (List<string>)ViewBag._CTMCE;
+    List<string> _CTMPP = (List<string>)ViewBag._CTMPP;
+    List<string> _CTMPP1 = (List<string>)ViewBag._CTMPP1;
+    List<string> _CTMCT = (List<string>)ViewBag._CTMCT;
+    List<string> _CTMTQP = (List<string>)ViewBag._CTMTQP;
+    List<string> _CTMQD = (List<string>)ViewBag._CTMQD;
+
+    //Money Supermarket
+    List<string> _MSMTQ = (List<string>)ViewBag._MSMTQ;
+    List<string> _MSMTQR = (List<string>)ViewBag._MSMTQR;
+    List<string> _MSMTC = (List<string>)ViewBag._MSMTC;
+    List<string> _MSMPQR = (List<string>)ViewBag._MSMPQR;
+    List<string> _MSMFQ = (List<string>)ViewBag._MSMFQ;
+    List<string> _MSMTQS = (List<string>)ViewBag._MSMTQS;
+}
+
+<style>
+    #CTable td, th {
+        text-align: center;
+    }
+
+    #CTable th, td {
+        border: 5px solid #ffffff;
+    }
+
+    #GoCompareTable th {
+        background-color: #ff0000;
+    }
+
+    #GoCompareTable th, td {
+        border: 5px solid #ffffff;
+    }
+
+    #CompareTMTable th {
+        background-color: #a140f7;
+    }
+
+    #CompareTMTable th, td {
+        border: 5px solid #ffffff;
+    }
+
+    th {
+        background-color: #0094ff;
+    }
+
+    #innerTable {
+        table-layout: fixed;
+        width: 100%;
+        text-align: center;
+    }
+
+        #innerTable td, th {
+            overflow: hidden;
+            width: 12.5%;
+        }
+
+        #innerTable td {
+            border: 1px solid #a39a9a;
+        }
+
+    .lrgcell {
+    }
+
+    .DateTable th, td {
+        border: 3px solid #ffffff;
+    }
+
+    .Headercolor {
+        color: #ffffff;
+    }
+
+    h3 {
+        color: blue;
+        text-align: center;
+    }
+
+    #MSMTable th {
+        background-color: #432A73;
+    }
+
+    #MSMTable td, th {
+        text-align: center;
+    }
+
+    #MSMTable th, td {
+        border: 5px solid #ffffff;
+    }
+
+    .msmheader {
+        color: white;
+    }
+</style>
+
+<div>
+
+    <h3>Confused</h3>
+
+    <table id="CTable" style="width: 100%; text-align:center">
+        <tr>
+            <th style="width: 15%;"></th>
+            <th style="width: 10%;"></th>
+            <td style="width: 75%; background-color:#0094ff">
+                <table id="innerTable" class="Headercolor">
+                    <tr>
+                        <td>Saturday</td>
+                        <td>Sunday</td>
+                        <td>Monday</td>
+                        <td>Tuesday</td>
+                        <td>Wednesday</td>
+                        <td>Thursday</td>
+                        <td>Friday</td>
+                        <td class="lrgcell">Status</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <th>Total Quotes</th>
+            <th>
+                <table>
+                    <tr><td>@_CTQDatestring[0].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[1].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[2].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[3].ToString()</td></tr>
+                </table>
+            </th>
+
+            <td>
+                <table id="innerTable">
+                    <tr>
+                        @{
+                            var c = 7;
+
+                            for (int d = 0; d < _CTQ.Count; d++)
+                            {
+                                <td>
+                                    @if (c < _CTQ.Count)
+                                    {
+                                        @_CTQ[c].ToString()
+                                    }
+                                </td>
+                                c = c - 1;
+
+                                if (c == -1)
+                                {
+                                    @Raw("</tr><tr>")
+                                    c = 14;
+                                }
+                                else if (c == 7)
+                                {
+                                    @Raw("</tr><tr>")
+                                    c = 21;
+                                }
+                                else if (c == 14)
+                                {
+                                    @Raw("</tr><tr>")
+                                    c = 28;
+                                }
+                            }
+                        }
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+
+        <tr>
+            <th>Partner Quotes</th>
+            <th>
+                <table class=" datetable">
+                    <tr><td>@_CTQDatestring[0].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[1].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[2].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[3].ToString()</td></tr>
+                </table>
+            </th>
+
+            <td>
+                <table id="innerTable">
+                    <tr>
+                        @{
+                            c = 7;
+
+                            for (int d = 0; d < _PTQ.Count; d++)
+                            {
+                                <td>
+                                    @if (c < _PTQ.Count)
+                                    {
+                                        @_PTQ[c].ToString()
+                                    }
+                                </td>
+                                c = c - 1;
+
+                                if (c == -1)
+                                {
+                                    @Raw("</tr><tr>")
+                                    c = 14;
+                                }
+                                else if (c == 7)
+                                {
+                                    @Raw("</tr><tr>")
+                                    c = 21;
+                                }
+                                else if (c == 14)
+                                {
+                                    @Raw("</tr><tr>")
+                                    c = 28;
+                                }
+                            }
+                        }
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <th>Top Quote</th>
+            <th>
+                <table class="DateTable">
+                    <tr><td>@_CTQDatestring[0].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[1].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[2].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[3].ToString()</td></tr>
+                </table>
+            </th>
+
+            <td>
+                <table id="innerTable">
+                    <tr>
+                        @{
+                            c = 7;
+
+                            for (int d = 0; d < _CTopQ.Count; d++)
+                            {
+                                <td>
+                                    @if (c < _CTopQ.Count)
+                                    {
+                                        @_CTopQ[c].ToString()
+                                    }
+                                </td>
+                                c = c - 1;
+
+                                if (c == -1)
+                                {
+                                    @Raw("</tr><tr>")
+                                    c = 14;
+                                }
+                                else if (c == 7)
+                                {
+                                    @Raw("</tr><tr>")
+                                    c = 21;
+                                }
+                                else if (c == 14)
+                                {
+                                    @Raw("</tr><tr>")
+                                    c = 28;
+                                }
+                            }
+                        }
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+
+        <tr>
+            <th>Top Quote Q %</th>
+            <th>
+                <table class="DateTable">
+                    <tr><td>@_CTQDatestring[0].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[1].ToString()</td></tr>
+                </table>
+            </th>
+
+            <td>
+                <table id="innerTable">
+                    <tr>
+                        @{
+                            c = 7;
+
+                            for (int d = 0; d < @_CTopQP.Count; d++)
+                            {
+                                <td>
+                                    @_CTopQP[c].ToString()
+                                </td>
+                                c = c - 1;
+
+                                if (c == -1)
+                                {
+                                    @Raw("</tr><tr>")
+                                    c = 14;
+                                }
+                                else if (c == 7)
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+
+        <tr>
+            <th>Top Quote HI %</th>
+            <th>
+                <table class="DateTable">
+                    <tr><td>@_CTQDatestring[0].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[1].ToString()</td></tr>
+                </table>
+            </th>
+
+            <td>
+                <table id="innerTable">
+                    <tr>
+                        @{
+                            c = 7;
+
+                            for (int d = 0; d < _CTopHIP.Count; d++)
+                            {
+                                <td>
+                                    @if (c < _CTopHIP.Count)
+                                    {
+                                        @_CTopHIP[c].ToString()
+                                    }
+                                </td>
+                                c = c - 1;
+
+                                if (c == -1)
+                                {
+                                    @Raw("</tr><tr>")
+                                    c = 14;
+                                }
+                                else if (c == 7)
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+
+        <tr>
+            <th>Quotes Blocked %</th>
+            <th>
+                <table class="DateTable">
+                    <tr><td>@_CTQDatestring[0].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[1].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[2].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[3].ToString()</td></tr>
+                </table>
+            </th>
+
+            <td>
+                <table id="innerTable">
+                    <tr>
+                        @{
+                            c = 7;
+
+                            for (int d = 0; d < _CQBP.Count; d++)
+                            {
+                                <td>
+                                    @if (c < _CQBP.Count)
+                                    {
+                                        @_CQBP[c].ToString()
+                                    }
+                                </td>
+                                c = c - 1;
+
+                                if (c == -1)
+                                {
+                                    @Raw("</tr><tr>")
+                                    c = 14;
+                                }
+                                else if (c == 7)
+                                {
+                                    @Raw("</tr><tr>")
+                                    c = 21;
+                                }
+                                else if (c == 14)
+                                {
+                                    @Raw("</tr><tr>")
+                                    c = 28;
+                                }
+                            }
+                        }
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+<div>
+    <h3>Go Compare</h3>
+
+    <table id="GoCompareTable" style="width: 100%; text-align:center">
+        <tr>
+            <th style="width: 15%;"></th>
+            <th style="width: 10%;"></th>
+            <td style="width: 75%;  background-color:#ff0000;">
+                <table id="innerTable" class="Headercolor">
+                    <tr>
+                        <td>Saturday</td>
+                        <td>Sunday</td>
+                        <td>Monday</td>
+                        <td>Tuesday</td>
+                        <td>Wednesday</td>
+                        <td>Thursday</td>
+                        <td>Friday</td>
+                        <td class="lrgcell">Status</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <th>Total Quotes</th>
+            <th>
+                <table class="DateTable">
+                    <tr><td>@_CTQDatestring[0].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[1].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[2].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[3].ToString()</td></tr>
+                </table>
+            </th>
+
+            <td>
+                <table id="innerTable">
+                    <tr>
+                        @{
+                            c = 7;
+
+                            for (int d = 0; d < _GTQ.Count; d++)
+                            {
+                                <td>
+                                    @if (c < _GTQ.Count)
+                                    {
+                                        @_GTQ[c].ToString()
+                                    }
+                                </td>
+                                c = c - 1;
+
+                                if (c == -1)
+                                {
+                                    @Raw("</tr><tr>")
+                                    c = 14;
+                                }
+                                else if (c == 7)
+                                {
+                                    @Raw("</tr><tr>")
+                                    c = 21;
+                                }
+                                else if (c == 14)
+                                {
+                                    @Raw("</tr><tr>")
+                                    c = 28;
+                                }
+                            }
+                        }
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+
+        <tr>
+            <th>Partner Quotes</th>
+            <th>
+                <table class="DateTable">
+                    <tr><td>@_CTQDatestring[0].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[1].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[2].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[3].ToString()</td></tr>
+                </table>
+            </th>
+
+            <td>
+                <table id="innerTable">
+                    <tr>
+                        @{
+                            c = 7;
+
+                            for (int d = 0; d < _GPQ.Count; d++)
+                            {
+                                <td>
+                                    @if (c < _GPQ.Count)
+                                    {
+                                        @_GPQ[c].ToString()
+                                    }
+                                </td>
+                                c = c - 1;
+
+                                if (c == -1)
+                                {
+                                    @Raw("</tr><tr>")
+                                    c = 14;
+                                }
+                                else if (c == 7)
+                                {
+                                    @Raw("</tr><tr>")
+                                    c = 21;
+                                }
+                                else if (c == 14)
+                                {
+                                    @Raw("</tr><tr>")
+                                    c = 28;
+                                }
+                            }
+                        }
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+
+        <tr>
+            <th>Top Quote</th>
+            <th>
+                <table class="DateTable">
+                    <tr><td>@_CTQDatestring[0].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[1].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[2].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[3].ToString()</td></tr>
+                </table>
+            </th>
+
+            <td>
+                <table id="innerTable">
+                    <tr>
+                        @{
+                            c = 7;
+
+                            for (int d = 0; d < _GTopQ.Count; d++)
+                            {
+                                <td>@_GTopQ[c].ToString()</td>
+                                c = c - 1;
+
+                                if (c == -1)
+                                {
+                                    @Raw("</tr><tr>")
+                                    c = 14;
+                                }
+                                else if (c == 7)
+                                {
+                                    @Raw("</tr><tr>")
+                                    c = 21;
+                                }
+                                else if (c == 14)
+                                {
+                                    @Raw("</tr><tr>")
+                                    c = 28;
+                                }
+                            }
+                        }
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+
+        <tr>
+            <th>Top Quote Q %</th>
+            <th>
+                <table class="DateTable">
+                    <tr><td>@_CTQDatestring[0].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[1].ToString()</td></tr>
+                </table>
+            </th>
+
+            <td>
+                <table id="innerTable">
+                    <tr>
+                        @{
+                            c = 7;
+
+                            for (int d = 0; d < _GTopQP.Count; d++)
+                            {
+                                <td>@_GTopQP[c].ToString()</td>
+                                c = c - 1;
+
+                                if (c == -1)
+                                {
+                                    @Raw("</tr><tr>")
+                                    c = 14;
+                                }
+                                else if (c == 7)
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+
+        <tr>
+            <th>Top Quote HI %</th>
+            <th>
+                <table class="DateTable">
+                    <tr><td>@_CTQDatestring[0].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[1].ToString()</td></tr>
+                </table>
+            </th>
+
+            <td>
+                <table id="innerTable">
+                    <tr>
+                        @{
+                            c = 7;
+
+                            for (int d = 0; d < _GTopHIP.Count; d++)
+                            {
+                                <td>@_GTopHIP[c].ToString()</td>
+                                c = c - 1;
+
+                                if (c == -1)
+                                {
+                                    @Raw("</tr><tr>")
+                                    c = 14;
+                                }
+                                else if (c == 7)
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+
+        <tr>
+            <th>Quotes Blocked %</th>
+            <th>
+                <table class=" datetable">
+                    <tr><td>@_CTQDatestring[0].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[1].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[2].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[3].ToString()</td></tr>
+                </table>
+            </th>
+
+            <td>
+                <table id="innerTable">
+                    <tr>
+                        @{
+                            c = 7;
+
+                            for (int d = 0; d < _GQBP.Count; d++)
+                            {
+                                <td> @_GQBP[c].ToString()</td>
+                                c = c - 1;
+
+                                if (c == -1)
+                                {
+                                    @Raw("</tr><tr>")
+                                    c = 14;
+                                }
+                                else if (c == 7)
+                                {
+                                    @Raw("</tr><tr>")
+                                    c = 21;
+                                }
+                                else if (c == 14)
+                                {
+                                    @Raw("</tr><tr>")
+                                    c = 28;
+                                }
+                            }
+                        }
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <br /> <br />
+</div>
+
+
+<div>
+    <h3>Compare The Market</h3>
+
+    <table id="CompareTMTable" style=" width: 100%; text-align:center">
+        <tr>
+            <th style="width: 15%;"></th>
+            <th style="width: 10%;"></th>
+            <td style="width: 75%;  background-color: #a140f7;">
+                <table id="innerTable" class="Headercolor">
+                    <tr>
+                        <td>Saturday</td>
+                        <td>Sunday</td>
+                        <td>Monday</td>
+                        <td>Tuesday</td>
+                        <td>Wednesday</td>
+                        <td>Thursday</td>
+                        <td>Friday</td>
+                        <td class="lrgcell">Status</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <th>Consumer Enquiries </th>
+            <th>
+                <table class="DateTable">
+                    <tr><td>@_CTQDatestring[0].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[1].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[2].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[3].ToString()</td></tr>
+                </table>
+            </th>
+
+            <td>
+                <table id="innerTable">
+                    <tr>
+                        @{
+                            c = 7;
+                            if (_CTMCE != null)
+                            {
+                                for (int d = 0; d < _CTMCE.Count; d++)
+                                {
+                                    <td>@_CTMCE[c].ToString()</td>
+                                    c = c - 1;
+
+                                    if (c == -1)
+                                    {
+                                        @Raw("</tr><tr>")
+                                        c = 14;
+                                    }
+                                    else if (c == 7)
+                                    {
+                                        @Raw("</tr><tr>")
+                                        c = 21;
+                                    }
+                                    else if (c == 14)
+                                    {
+                                        @Raw("</tr><tr>")
+                                        c = 28;
+                                    }
+                                }
+                            }
+                        }
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+
+        <tr>
+            <th>Prices Presented</th>
+            <th>
+                <table class="DateTable ">
+                    <tr><td>@_CTQDatestring[0].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[1].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[2].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[3].ToString()</td></tr>
+                </table>
+            </th>
+
+            <td>
+                <table id="innerTable">
+                    <tr>
+                        @{
+                            c = 7;
+                            if (_CTMPP != null)
+                            {
+                                for (int d = 0; d < _CTMPP.Count; d++)
+                                {
+                                    <td>@_CTMPP[c].ToString()</td>
+                                    c = c - 1;
+
+                                    if (c == -1)
+                                    {
+                                        @Raw("</tr><tr>")
+                                        c = 14;
+                                    }
+                                    else if (c == 7)
+                                    {
+                                        @Raw("</tr><tr>")
+                                        c = 21;
+                                    }
+                                    else if (c == 14)
+                                    {
+                                        @Raw("</tr><tr>")
+                                        c = 28;
+                                    }
+                                }
+                            }
+                        }
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+
+        <tr>
+            <th>Prices Presented @@P1 </th>
+            <th>
+                <table class="DateTable">
+                    <tr><td>@_CTQDatestring[0].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[1].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[2].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[3].ToString()</td></tr>
+                </table>
+            </th>
+
+            <td>
+                <table id="innerTable">
+                    <tr>
+                        @{
+                            c = 7;
+
+                            if (_CTMPP1 != null)
+                            {
+
+                                for (int d = 0; d < _CTMPP1.Count; d++)
+                                {
+                                    <td>@_CTMPP1[c].ToString()</td>
+                                    c = c - 1;
+
+                                    if (c == -1)
+                                    {
+                                        @Raw("</tr><tr>")
+                                        c = 14;
+                                    }
+                                    else if (c == 7)
+                                    {
+                                        @Raw("</tr><tr>")
+                                        c = 21;
+                                    }
+                                    else if (c == 14)
+                                    {
+                                        @Raw("</tr><tr>")
+                                        c = 28;
+                                    }
+                                }
+                            }
+                        }
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+
+        <tr>
+            <th>Click Through (PCTs)</th>
+            <th>
+                <table class="DateTable">
+                    <tr>
+                        <td>@_CTQDatestring[0].ToString()</td>
+                    </tr>
+                    <tr><td>@_CTQDatestring[1].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[2].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[3].ToString()</td></tr>
+                </table>
+            </th>
+
+            <td>
+                <table id="innerTable">
+                    <tr>
+                        @{
+                            c = 7;
+
+                            if (_CTMCT != null)
+                            {
+
+                                for (int d = 0; d < _CTMCT.Count; d++)
+                                {
+                                    <td>@_CTMCT[c].ToString()</td>
+                                    c = c - 1;
+
+                                    if (c == -1)
+                                    {
+                                        @Raw("</tr><tr>")
+                                        c = 14;
+                                    }
+                                    else if (c == 7)
+                                    {
+                                        @Raw("</tr><tr>")
+                                        c = 21;
+                                    }
+                                    else if (c == 14)
+                                    {
+                                        @Raw("</tr><tr>")
+                                        c = 28;
+                                    }
+                                }
+                            }
+                        }
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+
+        <tr>
+            <th>Top Quotes % </th>
+            <th>
+                <table class="DateTable">
+                    <tr><td>@_CTQDatestring[0].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[1].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[2].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[3].ToString()</td></tr>
+                </table>
+            </th>
+
+            <td>
+                <table id="innerTable">
+                    <tr>
+                        @{
+                            c = 7;
+
+                            if (_CTMTQP != null)
+                            {
+
+                                for (int d = 0; d < _CTMTQP.Count; d++)
+                                {
+                                    <td>@_CTMTQP[c].ToString()</td>
+                                    c = c - 1;
+
+                                    if (c == -1)
+                                    {
+                                        @Raw("</tr><tr>")
+                                        c = 14;
+                                    }
+                                    else if (c == 7)
+                                    {
+                                        @Raw("</tr><tr>")
+                                        c = 21;
+                                    }
+                                    else if (c == 14)
+                                    {
+                                        @Raw("</tr><tr>")
+                                        c = 28;
+                                    }
+                                }
+                            }
+                        }
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <th>Quotes Declined %</th>
+            <th>
+                <table class="DateTable">
+                    <tr><td>@_CTQDatestring[0].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[1].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[2].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[3].ToString()</td></tr>
+                </table>
+            </th>
+
+            <td>
+                <table id="innerTable">
+                    <tr>
+                        @{
+                            c = 7;
+
+                            if (_CTMQD != null)
+                            {
+                                for (int d = 0; d < _CTMQD.Count; d++)
+                                {
+                                    <td>@_CTMQD[c].ToString()</td>
+                                    c = c - 1;
+
+                                    if (c == -1)
+                                    {
+                                        @Raw("</tr><tr>")
+                                        c = 14;
+                                    }
+                                    else if (c == 7)
+                                    {
+                                        @Raw("</tr><tr>")
+                                        c = 21;
+                                    }
+                                    else if (c == 14)
+                                    {
+                                        @Raw("</tr><tr>")
+                                        c = 28;
+                                    }
+                                }
+                            }
+                        }
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <br /> <br />
+</div>
+
+<div>
+
+    <h3>Money Supermarket</h3>
+
+    <table id="MSMTable" style=" width: 100%; text-align:center">
+        <tr>
+            <th style="width: 15%;"></th>
+            <th style="width: 10%;"></th>
+            <td style="width: 75%;  background-color: #432A73;">
+                <table id="innerTable" class="Headercolor">
+                    <tr>
+                        <td>Saturday</td>
+                        <td>Sunday</td>
+                        <td>Monday</td>
+                        <td>Tuesday</td>
+                        <td>Wednesday</td>
+                        <td>Thursday</td>
+                        <td>Friday</td>
+                        <td class="lrgcell">Status</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+
+        <tr>
+            <th>Total Queries </th>
+            <th>
+                <table class="DateTable">
+                    <tr><td>@_CTQDatestring[0].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[1].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[2].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[3].ToString()</td></tr>
+                </table>
+            </th>
+
+            <td>
+                <table id="innerTable">
+                    <tr>
+                        @{
+                            c = 7;
+                            if (_MSMTQ != null)
+                            {
+                                for (int d = 0; d < _MSMTQ.Count; d++)
+                                {
+                                    <td>@_MSMTQ[c].ToString()</td>
+                                    c = c - 1;
+
+                                    if (c == -1)
+                                    {
+                                        @Raw("</tr><tr>")
+                                        c = 14;
+                                    }
+                                    else if (c == 7)
+                                    {
+                                        @Raw("</tr><tr>")
+                                        c = 21;
+                                    }
+                                    else if (c == 14)
+                                    {
+                                        @Raw("</tr><tr>")
+                                        c = 28;
+                                    }
+                                }
+                            }
+                        }
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+
+        <tr>
+            <th>Total Quotes Returned</th>
+            <th>
+                <table class="DateTable ">
+                    <tr><td>@_CTQDatestring[0].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[1].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[2].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[3].ToString()</td></tr>
+                </table>
+            </th>
+
+            <td>
+                <table id="innerTable">
+                    <tr>
+                        @{
+                            c = 7;
+                            if (_MSMTQR != null)
+                            {
+                                for (int d = 0; d < _MSMTQR.Count; d++)
+                                {
+                                    <td>@_MSMTQR[c].ToString()</td>
+                                    c = c - 1;
+
+                                    if (c == -1)
+                                    {
+                                        @Raw("</tr><tr>")
+                                        c = 14;
+                                    }
+                                    else if (c == 7)
+                                    {
+                                        @Raw("</tr><tr>")
+                                        c = 21;
+                                    }
+                                    else if (c == 14)
+                                    {
+                                        @Raw("</tr><tr>")
+                                        c = 28;
+                                    }
+                                }
+                            }
+                        }
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+
+        <tr>
+            <th>Total Clicks</th>
+            <th>
+                <table class="DateTable">
+                    <tr><td>@_CTQDatestring[0].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[1].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[2].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[3].ToString()</td></tr>
+                </table>
+            </th>
+
+            <td>
+                <table id="innerTable">
+                    <tr>
+                        @{
+                            c = 7;
+
+                            if (_MSMTC != null)
+                            {
+                                for (int d = 0; d < _MSMTC.Count; d++)
+                                {
+                                    <td>@_MSMTC[c].ToString()</td>
+                                    c = c - 1;
+
+                                    if (c == -1)
+                                    {
+                                        @Raw("</tr><tr>")
+                                        c = 14;
+                                    }
+                                    else if (c == 7)
+                                    {
+                                        @Raw("</tr><tr>")
+                                        c = 21;
+                                    }
+                                    else if (c == 14)
+                                    {
+                                        @Raw("</tr><tr>")
+                                        c = 28;
+                                    }
+                                }
+                            }
+                        }
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+
+        <tr>
+            <th>Provider Quote Rate</th>
+            <th>
+                <table class="DateTable">
+                    <tr><td>@_CTQDatestring[0].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[1].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[2].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[3].ToString()</td></tr>
+                </table>
+            </th>
+
+            <td>
+                <table id="innerTable">
+                    <tr>
+                        @{
+                            c = 7;
+
+                            if (_MSMPQR != null)
+                            {
+                                for (int d = 0; d < _MSMPQR.Count; d++)
+                                {
+                                    <td>@_MSMPQR[c].ToString()</td>
+                                    c = c - 1;
+
+                                    if (c == -1)
+                                    {
+                                        @Raw("</tr><tr>")
+                                        c = 14;
+                                    }
+                                    else if (c == 7)
+                                    {
+                                        @Raw("</tr><tr>")
+                                        c = 21;
+                                    }
+                                    else if (c == 14)
+                                    {
+                                        @Raw("</tr><tr>")
+                                        c = 28;
+                                    }
+                                }
+                            }
+                        }
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+
+        <tr>
+            <th>Filtered Quotes</th>
+            <th>
+                <table class="DateTable">
+                    <tr><td>@_CTQDatestring[0].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[1].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[2].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[3].ToString()</td></tr>
+                </table>
+            </th>
+
+            <td>
+                <table id="innerTable">
+                    <tr>
+                        @{
+                            c = 7;
+
+                            if (_MSMFQ != null)
+                            {
+                                for (int d = 0; d < _MSMFQ.Count; d++)
+                                {
+                                    <td>@_MSMFQ[c].ToString()</td>
+                                    c = c - 1;
+
+                                    if (c == -1)
+                                    {
+                                        @Raw("</tr><tr>")
+                                        c = 14;
+                                    }
+                                    else if (c == 7)
+                                    {
+                                        @Raw("</tr><tr>")
+                                        c = 21;
+                                    }
+                                    else if (c == 14)
+                                    {
+                                        @Raw("</tr><tr>")
+                                        c = 28;
+                                    }
+                                }
+                            }
+                        }
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+
+        <tr>
+            <th>Top Quotes</th>
+            <th>
+                <table class="DateTable">
+                    <tr><td>@_CTQDatestring[0].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[1].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[2].ToString()</td></tr>
+                    <tr><td>@_CTQDatestring[3].ToString()</td></tr>
+                </table>
+            </th>
+
+            <td>
+                <table id="innerTable">
+                    <tr>
+                        @{
+                            c = 7;
+
+                            if (_MSMTQS != null)
+                            {
+                                for (int d = 0; d < _MSMTQS.Count; d++)
+                                {
+                                    <td>@_MSMTQS[c].ToString()</td>
+                                    c = c - 1;
+
+                                    if (c == -1)
+                                    {
+                                        @Raw("</tr><tr>")
+                                        c = 14;
+                                    }
+                                    else if (c == 7)
+                                    {
+                                        @Raw("</tr><tr>")
+                                        c = 21;
+                                    }
+                                    else if (c == 14)
+                                    {
+                                        @Raw("</tr><tr>")
+                                        c = 28;
+                                    }
+                                }
+                            }
+                        }
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <br /> <br />
+</div>

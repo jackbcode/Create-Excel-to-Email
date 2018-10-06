@@ -1,0 +1,198 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+
+
+<h2 id="gatherExcel"> Gather Aggregator Files </h2>
+<hr />
+<br />
+
+
+<input type="button" value="Get Go Compare Data" id="btnGetGoCompare" class=" btn btn-primary btn-lg btn-block buttonCustom" />
+<br /><br />
+<div id="goCompare"> </div>
+<br />
+
+@*<input type="button" value="2. Download Confused Files and open files dir" id="btndownloadConfused" class=" btn btn-warning btn-sm  buttonCustom" />
+    <br /><br />
+    <div id="confusedTwo"> </div>
+    <br />*@
+
+<div id="wrapper">
+    <div id="dpleft2">
+        <input type="button" value="Get Confused Data" id="btnGetConfused" class=" btn btn-primary btn-lg btn-block buttonCustom" />
+        <br />
+        <div id="confused"> </div>
+        <br />
+    </div>
+    @*<div id="dpright2">
+            <p id="msfont">(Unprotect excel files)</p>
+        </div>*@
+</div>
+<br />
+
+
+<div id="wrapper">
+    <div id="dpleft2">
+        <input type="button" value="Get Money Supermkt Data" id="btnGetMoneySupermarket" class=" btn btn-primary btn-lg btn-block buttonCustom" />
+        <br />
+        <div id="moneySupermarket"> </div>
+        <br />
+    </div>
+    <div id="dpright2">
+        <p id="msfont">(Email comes in every Tuesday)</p>
+    </div>
+</div>
+<br /><br />
+
+<div id="wrapper">
+    <div id="dpleft2">
+        <input type="button" value="Get Compare TM Data" id="btnGetCTM" class=" btn btn-primary btn-lg btn-block buttonCustom" />
+        <br />
+        <div id="CTM"> </div>
+    </div>
+    @*<div id="dpright2">
+            <p id="msfont">(Select last - as kills all excel files)</p>
+        </div>*@
+</div>
+<br /><br />
+
+<div id="wrapper">
+    <div id="dpleft2">
+        <input type="button" value="Delete Excel Files" id="deleteEF" class=" btn btn-warning btn-lg btn-block buttonCustom" />
+        <br />
+        <div id="EF"> </div>
+    </div>
+    @*<div id="dpright2">
+            <p id="msfont">(Select last - as kills all excel files)</p>
+        </div>*@
+</div>
+<br /><br />
+
+
+
+
+
+
+
+
+<div id="success">
+
+
+</div>
+
+@section Scripts
+{
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script>
+
+        $(document).ready(function () {
+
+            $('#btnGetGoCompare').click(function () {
+
+                $.ajax({
+                    url: '@Url.Action("GetGoCompare")',
+                    cashe: false,
+                    type: 'POST',
+                    data:param = "",
+                    beforeSend: function (data){
+                        $('#goCompare').html('<img id = "ajax" src="/Content/Images/ajax-loader.gif" />');
+                    },
+                    success: function (data) {
+                        $('#goCompare').html(data.success);
+                    }
+                });
+                debugger
+            });
+
+            $('#btnGetCTM').click(function () {
+
+                $.ajax({
+                    url: '@Url.Action("GetCompareTheMarket")',
+                    cashe: false,
+                    type: 'POST',
+                    data:param = "",
+                    beforeSend: function (data){
+                        $('#CTM').html('<img id = "ajax" src="/Content/Images/ajax-loader.gif" />');
+                    },
+                    success: function (data) {
+                        $('#CTM').html(data.success);
+                    }
+                });
+                debugger
+            });
+
+            $('#btnGetConfused').click(function () {
+
+                $.ajax({
+                    url: '@Url.Action("GetConfused")',
+                    cashe: false,
+                    type: 'POST',
+                    data:param = "",
+                    beforeSend: function (data){
+                        $('#confused').html('<img id = "ajax" src="/Content/Images/ajax-loader.gif" />');
+                    },
+                    success: function (data) {
+                        $('#confused').html(data.success);
+                    }
+                });
+                debugger
+            });
+
+            $('#btndownloadConfused').click(function () {
+
+                $.ajax({
+                    url: '@Url.Action("GetConfusedFiles")',
+                    cashe: false,
+                    type: 'POST',
+                    data:param = "",
+                    beforeSend: function (data){
+                        $('#confusedTwo').html('<img id = "ajax" src="/Content/Images/ajax-loader.gif" />');
+                    },
+                    success: function (data) {
+                        $('#confusedTwo').html(data.success);
+                    }
+                });
+                debugger
+            });
+
+            $('#btnGetMoneySupermarket').click(function () {
+
+                $.ajax({
+                    url: '@Url.Action("GetMoneySupermarket")',
+                    cashe: false,
+                    type: 'POST',
+                    data:param = "",
+                    beforeSend: function (data){
+                        $('#moneySupermarket').html('<img id = "ajax" src="/Content/Images/ajax-loader.gif" />');
+                    },
+                    success: function (data) {
+                        $('#moneySupermarket').html(data.success);
+                    }
+                });
+                debugger
+            });
+
+
+              $('#deleteEF').click(function () {
+
+                $.ajax({
+                    url: '@Url.Action("DeleteAllFiles")',
+                    cashe: false,
+                    type: 'POST',
+                    data:param = "",
+                    beforeSend: function (data){
+                        $('#EF').html('<img id = "ajax" src="/Content/Images/ajax-loader.gif" />');
+                    },
+                    success: function (data) {
+                        $('#EF').html(data.success);
+                    }
+                });
+                debugger
+            });
+
+        });
+
+    </script>
+}

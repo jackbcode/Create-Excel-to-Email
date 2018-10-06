@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DailyPerformanceReportDbModelStoreContainer" CdmEntityContainer="DailyPerformanceReportDbEntities1">
+    <EntitySetMapping Name="DailyQuotes">
+      <EntityTypeMapping TypeName="DailyPerformanceReportDbModel.DailyQuote">
+        <MappingFragment StoreEntitySet="DailyQuotes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="QuoteSource" ColumnName="QuoteSource" />
+          <ScalarProperty Name="QuoteType" ColumnName="QuoteType" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="GetEntryDates" FunctionName="DailyPerformanceReportDbModel.Store.GetEntryDates" />
+  </EntityContainerMapping>
+</Mapping>

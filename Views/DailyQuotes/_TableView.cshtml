@@ -1,0 +1,307 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<DailyPerformanceReportAuto.Models.DailyQuote> _ConfTQ = (List<DailyPerformanceReportAuto.Models.DailyQuote>)ViewBag.ConfusedTopQ;
+    List<string> _CTQ = (List<string>)ViewBag._CTQ;
+    List<string> _PTQHI = (List<string>)ViewBag._PTQHI;
+    List<string> _CTopQHI = (List<string>)ViewBag._CTopQHI;
+    List<string> _CTopQPHI = (List<string>)ViewBag._CTopQPHI;
+    List<string> _PTQQYH = (List<string>)ViewBag._PTQQYH;
+    List<string> _CTopQQYH = (List<string>)ViewBag._CTopQQYH;
+    List<string> _CTopQPQYH = (List<string>)ViewBag._CTopQPQYH;
+    List<string> _CQBP = (List<string>)ViewBag._CQBP;
+
+}
+
+<div>
+    <h2>@_ConfTQ[0].QuoteSource</h2>
+
+    <h3>Confused</h3>
+
+    <table style="border:5px solid red; width: 100%">
+        <tr>
+            <th>1</th>
+            <th>2</th>
+            <td>
+                <table id="innerTable">
+                    <tr>
+                        <td>Saturday</td>
+                        <td>Sunday</td>
+                        <td>Monday</td>
+                        <td>Tuesday</td>
+                        <td>Wednesday</td>
+                        <td>Thursday</td>
+                        <td>Friday</td>
+                        <td class="lrgcell">Status</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <th>Total Quotes</th>
+            <th>
+                <table id="innerTable">
+                    <tr><td>@ViewBag._CTQDatestring[0].ToString()</td></tr>
+                    <tr><td>@ViewBag._CTQDatestring[1].ToString()</td></tr>
+                </table>
+            </th>
+
+            <td>
+                <table id="innerTable">
+                    <tr>
+                        @{
+                            var c = 7;
+
+                            for (int d = 0; d < _CTQ.Count; d++)
+                            {
+                                <td>@_CTQ[c].ToString()</td>
+                                c = c - 1;
+
+                                if (c == -1)
+                                {
+                                    @Html.Raw("</tr><tr>")
+                                    c = 14;
+                                }
+                            }
+                        }
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+
+        <tr>
+            <th>Partner Quotes HI</th>
+            <th>
+                <table id="innerTable">
+                    <tr><td>@ViewBag._PTQDatestring[0].ToString()</td></tr>
+                    <tr><td>@ViewBag._PTQDatestring[1].ToString()</td></tr>
+                </table>
+            </th>
+
+            <td>
+                <table id="innerTable">
+                    <tr>
+                        @{
+                            c = 7;
+
+                            for (int d = 0; d < _PTQHI.Count; d++)
+                            {
+                                <td>@_PTQHI[c].ToString()</td>
+                                c = c - 1;
+
+                                if (c == -1)
+                                {
+                                    @Html.Raw("</tr><tr>")
+                                    c = 14;
+                                }
+                            }
+                        }
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+
+        <tr>
+            <th>Top Quote HI</th>
+            <th>
+                <table id="innerTable">
+                    <tr><td>@ViewBag._PTQDatestring[0].ToString()</td></tr>
+                    <tr><td>@ViewBag._PTQDatestring[1].ToString()</td></tr>
+                </table>
+            </th>
+
+            <td>
+                <table id="innerTable">
+                    <tr>
+                        @{
+                            c = 7;
+
+                            for (int d = 0; d < _CTopQHI.Count; d++)
+                            {
+                                <td>@_CTopQHI[c].ToString() </td>
+                                c = c - 1;
+
+                                if (c == -1)
+                                {
+                                    @Html.Raw("</tr><tr>")
+                                    c = 14;
+                                }
+                            }
+                        }
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+
+        <tr>
+            <th>Top Quote HI%</th>
+            <th>
+                <table id="innerTable">
+                    <tr><td>@ViewBag._PTQDatestring[0].ToString()</td></tr>
+                    <tr><td>@ViewBag._PTQDatestring[1].ToString()</td></tr>
+                </table>
+            </th>
+
+            <td>
+                <table id="innerTable">
+                    <tr>
+                        @{
+                            c = 7;
+
+                            for (int d = 0; d < _CTopQPHI.Count; d++)
+                            {
+                                <td>@_CTopQPHI[c].ToString()%</td>
+                                c = c - 1;
+
+                                if (c == -1)
+                                {
+                                    @Html.Raw("</tr><tr>")
+                                    c = 14;
+                                }
+                            }
+                        }
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+
+
+
+
+        <tr>
+            <th>Partner Quotes QYH</th>
+            <th>
+                <table id="innerTable">
+                    <tr><td>@ViewBag._PTQDatestring[0].ToString()</td></tr>
+                    <tr><td>@ViewBag._PTQDatestring[1].ToString()</td></tr>
+                </table>
+            </th>
+
+            <td>
+                <table id="innerTable">
+                    <tr>
+                        @{
+                            c = 7;
+
+                            for (int d = 0; d < _PTQQYH.Count; d++)
+                            {
+                                <td>@_PTQQYH[c].ToString()</td>
+                                c = c - 1;
+
+                                if (c == -1)
+                                {
+                                    @Html.Raw("</tr><tr>")
+                                    c = 14;
+                                }
+                            }
+                        }
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+
+        <tr>
+            <th>Top Quote QYH</th>
+            <th>
+                <table id="innerTable">
+                    <tr><td>@ViewBag._PTQDatestring[0].ToString()</td></tr>
+                    <tr><td>@ViewBag._PTQDatestring[1].ToString()</td></tr>
+                </table>
+            </th>
+
+            <td>
+                <table id="innerTable">
+                    <tr>
+                        @{
+                            c = 7;
+
+                            for (int d = 0; d < _CTopQQYH.Count; d++)
+                            {
+                                <td>@_CTopQQYH[c].ToString() </td>
+                                c = c - 1;
+
+                                if (c == -1)
+                                {
+                                    @Html.Raw("</tr><tr>")
+                                    c = 14;
+                                }
+                            }
+                        }
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+
+        <tr>
+            <th>Top Quote QYH%</th>
+            <th>
+                <table id="innerTable">
+                    <tr><td>@ViewBag._PTQDatestring[0].ToString()</td></tr>
+                    <tr><td>@ViewBag._PTQDatestring[1].ToString()</td></tr>
+                </table>
+            </th>
+
+            <td>
+                <table id="innerTable">
+                    <tr>
+                        @{
+                            c = 7;
+
+                            for (int d = 0; d < _CTopQPQYH.Count; d++)
+                            {
+                                <td>@_CTopQPQYH[c].ToString()%</td>
+                                c = c - 1;
+
+                                if (c == -1)
+                                {
+                                    @Html.Raw("</tr><tr>")
+                                    c = 14;
+                                }
+                            }
+                        }
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+
+        <tr>
+            <th>Quotes Blocked %</th>
+            <th>
+                <table id="innerTable">
+                    <tr><td>@ViewBag._PTQDatestring[0].ToString()</td></tr>
+                    <tr><td>@ViewBag._PTQDatestring[1].ToString()</td></tr>
+                </table>
+            </th>
+
+            <td>
+                <table id="innerTable">
+                    <tr>
+                        @{
+                            c = 7;
+
+                            for (int d = 0; d < _CQBP.Count; d++)
+                            {
+                                <td>@_CQBP[c].ToString() %</td>
+                                c = c - 1;
+
+                                if (c == -1)
+                                {
+                                    @Html.Raw("</tr><tr>")
+                                    c = 14;
+                                }
+                            }
+                        }
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <br />
+</div>

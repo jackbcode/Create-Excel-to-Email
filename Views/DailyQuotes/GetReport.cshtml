@@ -1,0 +1,1663 @@
+﻿
+@{
+    // ViewBag.Title = "GetReport";
+    //  Layout = "~/Views/Shared/_Layout.cshtml";
+    List<DailyPerformanceReportAuto.Models.DailyQuote> _ConfTQ = (List<DailyPerformanceReportAuto.Models.DailyQuote>)ViewBag.ConfusedTopQ;
+    List<string> _CTQ = (List<string>)ViewBag._CTQ;
+    List<string> _PTQ = (List<string>)ViewBag._PTQ;
+    List<string> _CTopQ = (List<string>)ViewBag._CTopQ;
+    List<string> _CTopQP = (List<string>)ViewBag._CTopQP;
+    List<string> _CTopHIP = (List<string>)ViewBag._CTopHIP;
+    List<string> _CQBP = (List<string>)ViewBag._CQBP;
+
+    List<string> _GTQ = (List<string>)ViewBag._GTQ;
+    List<string> _GPQ = (List<string>)ViewBag._GPQ;
+    List<string> _GTopQ = (List<string>)ViewBag._GTopQ;
+    List<string> _GTopQP = (List<string>)ViewBag._GTopQP;
+    List<string> _GTopHIP = (List<string>)ViewBag._GTopHIP;
+    List<string> _GQBP = (List<string>)ViewBag._GQBP;
+    List<string> _CTMCE = (List<string>)ViewBag._CTMCE;
+    List<string> _CTMPP = (List<string>)ViewBag._CTMPP;
+    List<string> _CTMPP1 = (List<string>)ViewBag._CTMPP1;
+    List<string> _CTMCT = (List<string>)ViewBag._CTMCT;
+    List<string> _CTMTQP = (List<string>)ViewBag._CTMTQP;
+    List<string> _CTMQD = (List<string>)ViewBag._CTMQD;
+    List<string> _MSMTQ = (List<string>)ViewBag._MSMTQ;
+    List<string> _MSMTQR = (List<string>)ViewBag._MSMTQR;
+    List<string> _MSMTC = (List<string>)ViewBag._MSMTC;
+    List<string> _MSMPQR = (List<string>)ViewBag._MSMPQR;
+    List<string> _MSMFQ = (List<string>)ViewBag._MSMFQ;
+    List<string> _MSMTQS = (List<string>)ViewBag._MSMTQS;
+}
+
+<style>
+
+    td{
+        padding-top:5px;
+        padding-bottom:5px;
+    }
+
+    #CTable td, th {
+        text-align: center;
+    }
+
+    #CTable th, td {
+        border: 5px solid #ffffff ;
+    }
+
+    #GoCompareTable th {
+        background-color: #ff0000;
+    }
+
+    #GoCompareTable th, td {
+        border: 5px solid #ffffff;
+    }
+
+    #CompareTMTable th {
+        background-color: #a140f7;
+    }
+
+    #CompareTMTable th, td {
+        border: 5px solid #ffffff;
+    }
+
+    #MSMTable th {
+        background-color: #432A73;
+    }
+
+    #MSMTable td, th {
+        text-align: center;
+    }
+
+    #MSMTable th, td {
+        border: 5px solid #ffffff;
+    }
+
+    .msmheader {
+        color: white;
+    }
+
+    th {
+        background-color: #0094ff;
+    }
+
+    #innerTable {
+        table-layout: fixed;
+    }
+
+        #innerTable td, th {
+            overflow: hidden;
+            min-width: 100px;
+            max-width: 100px;
+        }
+
+        #innerTable td {
+            border: 1px solid #a39a9a;
+        }
+
+    .lrgcell {
+        min-width: 200px;
+        max-width: 200px;
+    }
+
+    .DateTable th, td {
+        border: 3px solid #ffffff;
+    }
+
+    .Headercolor {
+        color: #ffffff;
+    }
+
+    h3 {
+        color: blue;
+        text-align: center;
+    }
+
+    #msImage{
+       width:50%;
+    }
+    .white td{
+        color:white !important;
+    }
+
+    .whiteTwo{
+        color:white;
+    }
+</style>
+
+<br /><br />
+
+<div>
+    <h3><img src="~/Content/images/confused-logo.png" /></h3>
+
+    <table id="CTable" style="width: 100%; text-align:center">
+
+        <tr>
+            <th style="width: 15%;"></th>
+            <th style="width: 10%;"></th>
+            <td style="width: 75%; background-color:#0094ff">
+                <table id="innerTable" class="Headercolor">
+                    <tr>
+                        <td>Saturday</td>
+                        <td>Sunday</td>
+                        <td>Monday</td>
+                        <td>Tuesday</td>
+                        <td>Wednesday</td>
+                        <td>Thursday</td>
+                        <td>Friday</td>
+                        <td class="lrgcell">Status</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <th class="whiteTwo"> Total Quotes</th>
+            <th>
+                <table class="white" >
+                    <tr>
+                        <td>@ViewBag._CTQDatestring[0].ToString()</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>@ViewBag._CTQDatestring[1].ToString()</td>
+                    </tr>
+                
+                    <tr><td>@ViewBag._CTQDatestring[2].ToString()</td></tr>
+                
+                    <tr><td>@ViewBag._CTQDatestring[3].ToString()</td></tr>
+
+                </table>
+
+            </th>
+
+            <td>
+                <table id="innerTable">
+                    <tr>
+                        @{
+                            var c = 7;
+
+                            for (int d = 0; d < _CTQ.Count; d++)
+                            {
+                                <td>
+                                    @_CTQ[c].ToString()
+
+                                </td>
+                                c = c - 1;
+
+                                if (c == -1)
+                                {
+
+                                    @Html.Raw("</tr><tr>")
+                                    c = 14;
+                                }
+                                else if (c == 7)
+                                {
+                                    @Html.Raw("</tr><tr>")
+                                    c = 21;
+                                }
+                                else if (c == 14)
+                                {
+                                    @Html.Raw("</tr><tr>")
+                                    c = 28;
+                                }
+
+
+                            }
+                        }
+
+                    </tr>
+                </table>
+
+
+
+            </td>
+
+        </tr>
+
+        <tr>
+            <th class="whiteTwo"> Partner Quotes</th>
+            <th>
+                <table class=" white datetable">
+                    <tr>
+                        <td>@ViewBag._CTQDatestring[0].ToString()</td>
+                    </tr>
+                    <tr>
+                        <td>@ViewBag._CTQDatestring[1].ToString()</td>
+                    </tr>
+                    <tr><td>@ViewBag._CTQDatestring[2].ToString()</td></tr>
+                    <tr><td>@ViewBag._CTQDatestring[3].ToString()</td></tr>
+
+
+                </table>
+
+            </th>
+            <td>
+
+
+                <table id="innerTable">
+
+
+
+                    <tr>
+
+                        @{
+                            c = 7;
+
+                            for (int d = 0; d < _PTQ.Count; d++)
+                            {
+                                <td>
+                                    @_PTQ[c].ToString()
+                                </td>
+                                c = c - 1;
+
+                                if (c == -1)
+                                {
+
+                                    @Html.Raw("</tr><tr>")
+                                    c = 14;
+                                }
+                                else if (c == 7)
+                                {
+                                    @Html.Raw("</tr><tr>")
+                                    c = 21;
+                                }
+                                else if (c == 14)
+                                {
+                                    @Html.Raw("</tr><tr>")
+                                    c = 28;
+                                }
+
+                            }
+                        }
+
+                    </tr>
+                </table>
+
+
+
+            </td>
+
+        </tr>
+        <tr>
+            <th class="whiteTwo"> Top Quote</th>
+            <th>
+                <table class="DateTable white">
+                    <tr>
+                        <td>@ViewBag._CTQDatestring[0].ToString()</td>
+                    </tr>
+                    <tr>
+                        <td>@ViewBag._CTQDatestring[1].ToString()</td>
+                    </tr>
+                    <tr><td>@ViewBag._CTQDatestring[2].ToString()</td></tr>
+                    <tr><td>@ViewBag._CTQDatestring[3].ToString()</td></tr>
+
+
+                </table>
+
+            </th>
+            <td>
+
+
+                <table id="innerTable">
+
+
+
+                    <tr>
+
+                        @{
+                            c = 7;
+
+                            for (int d = 0; d < _CTopQ.Count; d++)
+                            {
+                                <td>
+                                    @_CTopQ[c].ToString()
+                                </td>
+                                c = c - 1;
+
+                                if (c == -1)
+                                {
+
+                                    @Html.Raw("</tr><tr>")
+                                    c = 14;
+                                }
+                                else if (c == 7)
+                                {
+                                    @Html.Raw("</tr><tr>")
+                                    c = 21;
+                                }
+                                else if (c == 14)
+                                {
+                                    @Html.Raw("</tr><tr>")
+                                    c = 28;
+                                }
+
+                            }
+                        }
+
+                    </tr>
+                </table>
+
+
+
+            </td>
+
+        </tr>
+        <tr>
+            <th class="whiteTwo"> Top Quote Q %</th>
+            <th>
+                <table class="DateTable white">
+                    <tr>
+                        <td>@ViewBag._CTQDatestring[0].ToString()</td>
+                    </tr>
+                    <tr>
+                        <td>@ViewBag._CTQDatestring[1].ToString()</td>
+                    </tr>
+
+                </table>
+
+            </th>
+            <td>
+
+
+                <table id="innerTable">
+
+
+
+                    <tr>
+
+                        @{
+                            c = 7;
+
+                            for (int d = 0; d < @_CTopQP.Count; d++)
+                            {
+                                <td>
+                                    @_CTopQP[c].ToString()
+                                </td>
+                                c = c - 1;
+
+                                if (c == -1)
+                                {
+
+                                    @Html.Raw("</tr><tr>")
+                                    c = 14;
+                                }
+                                else if (c == 7)
+                                {
+                                    break;
+                                }
+
+                            }
+                        }
+
+                    </tr>
+                </table>
+
+
+
+            </td>
+
+        </tr>
+        <tr>
+            <th class="whiteTwo"> Top Quote HI %</th>
+            <th>
+                <table class="DateTable white">
+                    <tr>
+                        <td>@ViewBag._CTQDatestring[0].ToString()</td>
+                    </tr>
+                    <tr>
+                        <td>@ViewBag._CTQDatestring[1].ToString()</td>
+                    </tr>
+
+                </table>
+
+            </th>
+            <td>
+
+
+                <table id="innerTable">
+
+
+
+                    <tr>
+
+                        @{
+                            c = 7;
+
+                            for (int d = 0; d < @_CTopHIP.Count; d++)
+                            {
+                                <td>
+                                    @_CTopHIP[c].ToString()
+                                </td>
+                                c = c - 1;
+
+                                if (c == -1)
+                                {
+
+                                    @Html.Raw("</tr><tr>")
+                                    c = 14;
+                                }
+                                else if (c == 7)
+                                {
+                                    break;
+                                }
+
+
+                            }
+                        }
+
+                    </tr>
+                </table>
+
+
+
+            </td>
+
+        </tr>
+        <tr>
+            <th class="whiteTwo">Quotes Blocked %</th>
+            <th>
+                <table class="DateTable white">
+                    <tr>
+                        <td>@ViewBag._CTQDatestring[0].ToString()</td>
+                    </tr>
+                    <tr>
+                        <td>@ViewBag._CTQDatestring[1].ToString()</td>
+                    </tr>
+                    <tr><td>@ViewBag._CTQDatestring[2].ToString()</td></tr>
+                    <tr><td>@ViewBag._CTQDatestring[3].ToString()</td></tr>
+
+                </table>
+
+            </th>
+            <td>
+
+
+                <table id="innerTable">
+
+
+
+                    <tr>
+
+                        @{
+                            c = 7;
+
+                            for (int d = 0; d < _CQBP.Count; d++)
+                            {
+                                <td>
+                                    @_CQBP[c].ToString()
+                                </td>
+                                c = c - 1;
+
+                                if (c == -1)
+                                {
+
+                                    @Html.Raw("</tr><tr>")
+                                    c = 14;
+                                }
+                                else if (c == 7)
+                                {
+                                    @Html.Raw("</tr><tr>")
+                                    c = 21;
+                                }
+                                else if (c == 14)
+                                {
+                                    @Html.Raw("</tr><tr>")
+                                    c = 28;
+                                }
+
+                            }
+                        }
+
+                    </tr>
+                </table>
+
+
+
+            </td>
+
+        </tr>
+
+
+
+
+    </table>
+
+
+
+
+
+
+
+
+
+
+
+    <br />
+
+
+
+
+    <br />
+
+
+
+</div>
+
+
+<div>
+
+
+
+    <h3>
+        <img src="~/Content/images/GC_masthead_Opaque.png" />
+    </h3>
+
+    <table id="GoCompareTable" style="width: 100%; text-align:center">
+        <tr>
+            <th style="width: 15%;"></th>
+            <th style="width: 10%;"></th>
+            <td style="width: 75%;  background-color:#ff0000;">
+                <table id="innerTable" class="Headercolor">
+                    <tr>
+                        <td>Saturday</td>
+                        <td>Sunday</td>
+                        <td>Monday</td>
+                        <td>Tuesday</td>
+                        <td>Wednesday</td>
+                        <td>Thursday</td>
+                        <td>Friday</td>
+                        <td class="lrgcell">Status</td>
+                    </tr>
+                </table>
+
+
+            </td>
+        </tr>
+        <tr>
+            <th class="whiteTwo"> Total Quotes</th>
+            <th>
+                <table class="DateTable white white">
+                    <tr>
+                        <td>@ViewBag._CTQDatestring[0].ToString()</td>
+                    </tr>
+                    <tr>
+                        <td>@ViewBag._CTQDatestring[1].ToString()</td>
+                    </tr>
+                    <tr><td>@ViewBag._CTQDatestring[2].ToString()</td></tr>
+                    <tr><td>@ViewBag._CTQDatestring[3].ToString()</td></tr>
+
+
+                </table>
+
+            </th>
+            <td>
+
+
+                <table id="innerTable">
+
+
+
+                    <tr>
+
+                        @{
+                            c = 7;
+
+                            for (int d = 0; d < _GTQ.Count; d++)
+                            {
+                                <td>
+                                    @_GTQ[c].ToString()
+                                </td>
+                                c = c - 1;
+
+                                if (c == -1)
+                                {
+
+                                    @Html.Raw("</tr><tr>")
+                                    c = 14;
+                                }
+                                else if (c == 7)
+                                {
+                                    @Html.Raw("</tr><tr>")
+                                    c = 21;
+                                }
+                                else if (c == 14)
+                                {
+                                    @Html.Raw("</tr><tr>")
+                                    c = 28;
+                                }
+
+                            }
+                        }
+
+                    </tr>
+                </table>
+
+
+
+            </td>
+
+        </tr>
+
+        <tr>
+            <th class="whiteTwo"> Partner Quotes</th>
+            <th>
+                <table class="DateTable white">
+                    <tr>
+                        <td>@ViewBag._CTQDatestring[0].ToString()</td>
+                    </tr>
+                    <tr>
+                        <td>@ViewBag._CTQDatestring[1].ToString()</td>
+                    </tr>
+                    <tr><td>@ViewBag._CTQDatestring[2].ToString()</td></tr>
+                    <tr><td>@ViewBag._CTQDatestring[3].ToString()</td></tr>
+
+
+                </table>
+
+            </th>
+            <td>
+
+
+                <table id="innerTable">
+
+
+
+                    <tr>
+
+                        @{
+                            c = 7;
+
+                            for (int d = 0; d < _GPQ.Count; d++)
+                            {
+                                <td>
+                                    @_GPQ[c].ToString()
+                                </td>
+                                c = c - 1;
+
+                                if (c == -1)
+                                {
+
+                                    @Html.Raw("</tr><tr>")
+                                    c = 14;
+                                }
+                                else if (c == 7)
+                                {
+                                    @Html.Raw("</tr><tr>")
+                                    c = 21;
+                                }
+                                else if (c == 14)
+                                {
+                                    @Html.Raw("</tr><tr>")
+                                    c = 28;
+                                }
+
+                            }
+                        }
+
+                    </tr>
+                </table>
+
+
+
+            </td>
+
+        </tr>
+        <tr>
+            <th class="whiteTwo"> Top Quote</th>
+            <th>
+                <table class="DateTable white">
+                    <tr>
+                        <td>@ViewBag._CTQDatestring[0].ToString()</td>
+                    </tr>
+                    <tr>
+                        <td>@ViewBag._CTQDatestring[1].ToString()</td>
+                    </tr>
+                    <tr><td>@ViewBag._CTQDatestring[2].ToString()</td></tr>
+                    <tr><td>@ViewBag._CTQDatestring[3].ToString()</td></tr>
+
+
+                </table>
+
+            </th>
+            <td>
+
+
+                <table id="innerTable">
+
+
+
+                    <tr>
+
+                        @{
+                            c = 7;
+
+                            for (int d = 0; d < _GTopQ.Count; d++)
+                            {
+                                <td>
+                                    @_GTopQ[c].ToString()
+                                </td>
+                                c = c - 1;
+
+                                if (c == -1)
+                                {
+
+                                    @Html.Raw("</tr><tr>")
+                                    c = 14;
+                                }
+                                else if (c == 7)
+                                {
+                                    @Html.Raw("</tr><tr>")
+                                    c = 21;
+                                }
+                                else if (c == 14)
+                                {
+                                    @Html.Raw("</tr><tr>")
+                                    c = 28;
+                                }
+
+                            }
+                        }
+
+                    </tr>
+                </table>
+
+
+
+            </td>
+
+        </tr>
+        <tr>
+            <th class="whiteTwo"> Top Quote Q %</th>
+            <th>
+                <table class="DateTable white">
+                    <tr>
+                        <td>@ViewBag._CTQDatestring[0].ToString()</td>
+                    </tr>
+                    <tr>
+                        <td>@ViewBag._CTQDatestring[1].ToString()</td>
+                    </tr>
+
+                </table>
+
+            </th>
+            <td>
+
+
+                <table id="innerTable">
+
+
+
+                    <tr>
+
+                        @{
+                            c = 7;
+
+                            for (int d = 0; d < _GTopQP.Count; d++)
+                            {
+                                <td>
+                                    @_GTopQP[c].ToString()
+                                </td>
+                                c = c - 1;
+
+                                if (c == -1)
+                                {
+
+                                    @Html.Raw("</tr><tr>")
+                                    c = 14;
+                                }
+                                else if (c == 7)
+                                {
+                                    break;
+                                }
+
+                            }
+                        }
+
+                    </tr>
+                </table>
+
+
+
+            </td>
+
+        </tr>
+        <tr>
+            <th class="whiteTwo"> Top Quote HI %</th>
+            <th>
+                <table class="DateTable white">
+                    <tr>
+                        <td>@ViewBag._CTQDatestring[0].ToString()</td>
+                    </tr>
+                    <tr>
+                        <td>@ViewBag._CTQDatestring[1].ToString()</td>
+                    </tr>
+
+                </table>
+
+            </th>
+            <td>
+
+
+                <table id="innerTable">
+
+
+
+                    <tr>
+
+                        @{
+                            c = 7;
+
+                            for (int d = 0; d < _GTopHIP.Count; d++)
+                            {
+                                <td>
+                                    @_GTopHIP[c].ToString()
+                                </td>
+                                c = c - 1;
+
+                                if (c == -1)
+                                {
+
+                                    @Html.Raw("</tr><tr>")
+                                    c = 14;
+                                }
+                                else if (c == 7)
+                                {
+                                    break;
+                                }
+
+                            }
+                        }
+
+                    </tr>
+                </table>
+
+
+
+            </td>
+
+        </tr>
+        <tr>
+            <th class="whiteTwo">Quotes Blocked %</th>
+            <th>
+                <table class=" DateTable white">
+                    <tr>
+                        <td>@ViewBag._CTQDatestring[0].ToString()</td>
+                    </tr>
+                    <tr>
+                        <td>@ViewBag._CTQDatestring[1].ToString()</td>
+                    </tr>
+                    <tr><td>@ViewBag._CTQDatestring[2].ToString()</td></tr>
+                    <tr><td>@ViewBag._CTQDatestring[3].ToString()</td></tr>
+
+                </table>
+
+            </th>
+            <td>
+
+
+                <table id="innerTable">
+
+
+
+                    <tr>
+
+                        @{
+                            c = 7;
+
+                            for (int d = 0; d < _GQBP.Count; d++)
+                            {
+                                <td>
+                                    @_GQBP[c].ToString()
+                                </td>
+                                c = c - 1;
+
+                                if (c == -1)
+                                {
+
+                                    @Html.Raw("</tr><tr>")
+                                    c = 14;
+                                }
+                                else if (c == 7)
+                                {
+                                    @Html.Raw("</tr><tr>")
+                                    c = 21;
+                                }
+                                else if (c == 14)
+                                {
+                                    @Html.Raw("</tr><tr>")
+                                    c = 28;
+                                }
+
+                            }
+                        }
+
+                    </tr>
+                </table>
+
+
+
+            </td>
+
+        </tr>
+
+
+
+
+    </table>
+    <br />
+
+
+
+
+    <br />
+
+
+
+</div>
+
+
+
+<div>
+    <h3><img src="~/Content/images/ctm.png" /></h3>
+
+    <table id="CompareTMTable" style=" width: 100%; text-align:center">
+        <tr>
+            <th style="width: 15%;"></th>
+            <th style="width: 10%;"></th>
+            <td style="width: 75%;  background-color: #a140f7;">
+                <table id="innerTable" class="Headercolor">
+                    <tr>
+                        <td>Saturday</td>
+                        <td>Sunday</td>
+                        <td>Monday</td>
+                        <td>Tuesday</td>
+                        <td>Wednesday</td>
+                        <td>Thursday</td>
+                        <td>Friday</td>
+                        <td class="lrgcell">Status</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <th class="whiteTwo"> Consumer Enquiries </th>
+            <th>
+                <table class="DateTable white">
+                    <tr><td>@ViewBag._CTQDatestring[0].ToString()</td></tr>
+                    <tr><td>@ViewBag._CTQDatestring[1].ToString()</td></tr>
+                    <tr><td>@ViewBag._CTQDatestring[2].ToString()</td></tr>
+                    <tr><td>@ViewBag._CTQDatestring[3].ToString()</td></tr>
+                </table>
+            </th>
+
+            <td>
+                <table id="innerTable">
+                    <tr>
+                        @{
+                            c = 7;
+                            if (_CTMCE != null)
+                            {
+                                for (int d = 0; d < _CTMCE.Count; d++)
+                                {
+                                    <td>@_CTMCE[c].ToString()</td>
+                                    c = c - 1;
+                                    if (c == -1)
+                                    {
+                                        @Html.Raw("</tr><tr>")
+                                        c = 14;
+                                    }
+                                    else if (c == 7)
+                                    {
+                                        @Html.Raw("</tr><tr>")
+                                        c = 21;
+                                    }
+                                    else if (c == 14)
+                                    {
+                                        @Html.Raw("</tr><tr>")
+                                        c = 28;
+                                    }
+                                }
+                            }
+                        }
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+
+        <tr>
+            <th class="whiteTwo"> Prices Presented</th>
+            <th>
+                <table class="DateTable white ">
+                    <tr><td>@ViewBag._CTQDatestring[0].ToString()</td></tr>
+                    <tr><td>@ViewBag._CTQDatestring[1].ToString()</td></tr>
+                    <tr><td>@ViewBag._CTQDatestring[2].ToString()</td></tr>
+                    <tr><td>@ViewBag._CTQDatestring[3].ToString()</td></tr>
+                </table>
+            </th>
+
+            <td>
+                <table id="innerTable">
+                    <tr>
+                        @{
+                            c = 7;
+                            if (_CTMPP != null)
+                            {
+                                for (int d = 0; d < _CTMPP.Count; d++)
+                                {
+                                    <td>@_CTMPP[c].ToString()</td>
+                                    c = c - 1;
+
+                                    if (c == -1)
+                                    {
+                                        @Html.Raw("</tr><tr>")
+                                        c = 14;
+                                    }
+                                    else if (c == 7)
+                                    {
+                                        @Html.Raw("</tr><tr>")
+                                        c = 21;
+                                    }
+                                    else if (c == 14)
+                                    {
+                                        @Html.Raw("</tr><tr>")
+                                        c = 28;
+                                    }
+                                }
+                            }
+                        }
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+
+        <tr>
+            <th class="whiteTwo"> Prices Presented @@P1 </th>
+            <th>
+                <table class="DateTable white">
+                    <tr><td>@ViewBag._CTQDatestring[0].ToString()</td></tr>
+                    <tr><td>@ViewBag._CTQDatestring[1].ToString()</td></tr>
+                    <tr><td>@ViewBag._CTQDatestring[2].ToString()</td></tr>
+                    <tr><td>@ViewBag._CTQDatestring[3].ToString()</td></tr>
+                </table>
+            </th>
+
+            <td>
+                <table id="innerTable">
+                    <tr>
+                        @{
+                            c = 7;
+
+                            if (_CTMPP1 != null)
+                            {
+                                for (int d = 0; d < _CTMPP1.Count; d++)
+                                {
+                                    <td>@_CTMPP1[c].ToString()</td>
+                                    c = c - 1;
+
+                                    if (c == -1)
+                                    {
+                                        @Html.Raw("</tr><tr>")
+                                        c = 14;
+                                    }
+                                    else if (c == 7)
+                                    {
+                                        @Html.Raw("</tr><tr>")
+                                        c = 21;
+                                    }
+                                    else if (c == 14)
+                                    {
+                                        @Html.Raw("</tr><tr>")
+                                        c = 28;
+                                    }
+                                }
+                            }
+                        }
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+
+        <tr>
+            <th class="whiteTwo"> Click Through (PCTs)</th>
+            <th>
+                <table class="DateTable white">
+                    <tr><td>@ViewBag._CTQDatestring[0].ToString()</td></tr>
+                    <tr><td>@ViewBag._CTQDatestring[1].ToString()</td></tr>
+                    <tr><td>@ViewBag._CTQDatestring[2].ToString()</td></tr>
+                    <tr><td>@ViewBag._CTQDatestring[3].ToString()</td></tr>
+                </table>
+            </th>
+
+            <td>
+                <table id="innerTable">
+                    <tr>
+                        @{
+                            c = 7;
+
+                            if (_CTMCT != null)
+                            {
+
+                                for (int d = 0; d < _CTMCT.Count; d++)
+                                {
+                                    <td>@_CTMCT[c].ToString()</td>
+                                    c = c - 1;
+
+                                    if (c == -1)
+                                    {
+                                        @Html.Raw("</tr><tr>")
+                                        c = 14;
+                                    }
+                                    else if (c == 7)
+                                    {
+                                        @Html.Raw("</tr><tr>")
+                                        c = 21;
+                                    }
+                                    else if (c == 14)
+                                    {
+                                        @Html.Raw("</tr><tr>")
+                                        c = 28;
+                                    }
+                                }
+                            }
+                        }
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+
+        <tr>
+            <th class="whiteTwo"> Top Quotes % </th>
+            <th>
+                <table class="DateTable white">
+                    <tr><td>@ViewBag._CTQDatestring[0].ToString()</td></tr>
+                    <tr><td>@ViewBag._CTQDatestring[1].ToString()</td></tr>
+                    <tr><td>@ViewBag._CTQDatestring[2].ToString()</td></tr>
+                    <tr><td>@ViewBag._CTQDatestring[3].ToString()</td></tr>
+                </table>
+            </th>
+
+            <td>
+                <table id="innerTable">
+                    <tr>
+                        @{
+                            c = 7;
+
+                            if (_CTMTQP != null)
+                            {
+
+                                for (int d = 0; d < _CTMTQP.Count; d++)
+                                {
+                                    <td>@_CTMTQP[c].ToString()</td>
+                                    c = c - 1;
+
+                                    if (c == -1)
+                                    {
+                                        @Html.Raw("</tr><tr>")
+                                        c = 14;
+                                    }
+                                    else if (c == 7)
+                                    {
+                                        @Html.Raw("</tr><tr>")
+                                        c = 21;
+                                    }
+                                    else if (c == 14)
+                                    {
+                                        @Html.Raw("</tr><tr>")
+                                        c = 28;
+                                    }
+                                }
+
+                            }
+                        }
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+
+        <tr>
+            <th class="whiteTwo">Quotes Declined %</th>
+            <th>
+                <table class="DateTable white">
+                    <tr><td>@ViewBag._CTQDatestring[0].ToString()</td></tr>
+                    <tr><td>@ViewBag._CTQDatestring[1].ToString()</td></tr>
+                    <tr><td>@ViewBag._CTQDatestring[2].ToString()</td></tr>
+                    <tr><td>@ViewBag._CTQDatestring[3].ToString()</td></tr>
+                </table>
+            </th>
+
+            <td>
+                <table id="innerTable">
+                    <tr>
+                        @{
+                            c = 7;
+
+                            if (_CTMQD != null)
+                            {
+                                for (int d = 0; d < _CTMQD.Count; d++)
+                                {
+                                    <td>@_CTMQD[c].ToString()</td>
+                                    c = c - 1;
+
+                                    if (c == -1)
+                                    {
+                                        @Html.Raw("</tr><tr>")
+                                        c = 14;
+                                    }
+                                    else if (c == 7)
+                                    {
+                                        @Html.Raw("</tr><tr>")
+                                        c = 21;
+                                    }
+                                    else if (c == 14)
+                                    {
+                                        @Html.Raw("</tr><tr>")
+                                        c = 28;
+                                    }
+                                }
+                            }
+                        }
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+
+    </table>
+    <br /><br />
+</div>
+
+
+
+<!---------------------- Money Supermarket ---------------------->
+<div>
+    <h3><img src="~/Content/images/msm.png" id ="msImage"/></h3>
+
+    <table id="MSMTable" style=" width: 100%; text-align:center">
+        <tr>
+            <th style="width: 15%;"></th>
+            <th style="width: 10%;"></th>
+            <td style="width: 75%;  background-color: #432A73;">
+                <table id="innerTable" class="Headercolor">
+                    <tr>
+                        <td>Saturday</td>
+                        <td>Sunday</td>
+                        <td>Monday</td>
+                        <td>Tuesday</td>
+                        <td>Wednesday</td>
+                        <td>Thursday</td>
+                        <td>Friday</td>
+                        <td class="lrgcell">Status</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <th class="msmheader">Total Queries</th>
+            <th class="msmheader">
+                <table class="DateTable white">
+                    <tr><td>@ViewBag._CTQDatestring[0].ToString()</td></tr>
+                    <tr><td>@ViewBag._CTQDatestring[1].ToString()</td></tr>
+                    <tr><td>@ViewBag._CTQDatestring[2].ToString()</td></tr>
+                    <tr><td>@ViewBag._CTQDatestring[3].ToString()</td></tr>
+                </table>
+            </th>
+
+            <td>
+                <table id="innerTable">
+                    <tr>
+                        @{
+                            if (_MSMTQ.Count <= 7)
+                            {
+                                c = _MSMTQ.Count - 1;
+                            }
+                            else
+                            {
+                                c = 7;
+                            }
+                            if (_MSMTQ != null)
+                            {
+                                for (int d = 0; d < _MSMTQ.Count; d++)
+                                {
+                                    <td>@_MSMTQ[c].ToString()</td>
+                                    c = c - 1;
+                                    if (c == -1)
+                                    {
+                                        @Html.Raw("</tr><tr>")
+                                        c = 14;
+                                    }
+                                    else if (c == 7)
+                                    {
+                                        @Html.Raw("</tr><tr>")
+                                        c = 21;
+                                    }
+                                    else if (c == 14)
+                                    {
+                                        @Html.Raw("</tr><tr>")
+                                        c = 28;
+                                    }
+                                }
+                            }
+                        }
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+
+        <tr>
+            <th class="msmheader">Total Quotes Returned</th>
+            <th class="msmheader">
+                <table class="DateTable white ">
+                    <tr><td>@ViewBag._CTQDatestring[0].ToString()</td></tr>
+                    <tr><td>@ViewBag._CTQDatestring[1].ToString()</td></tr>
+                    <tr><td>@ViewBag._CTQDatestring[2].ToString()</td></tr>
+                    <tr><td>@ViewBag._CTQDatestring[3].ToString()</td></tr>
+                </table>
+            </th>
+
+            <td>
+                <table id="innerTable">
+                    <tr>
+                        @{
+                            if (_MSMTQR.Count <= 7)
+                            {
+                                c = _MSMTQR.Count - 1;
+                            }
+                            else
+                            {
+                                c = 7;
+                            }
+                            if (_MSMTQR != null)
+                            {
+                                for (int d = 0; d < _MSMTQR.Count; d++)
+                                {
+                                    <td>@_MSMTQR[c].ToString()</td>
+                                    c = c - 1;
+
+                                    if (c == -1)
+                                    {
+                                        @Html.Raw("</tr><tr>")
+                                        c = 14;
+                                    }
+                                    else if (c == 7)
+                                    {
+                                        @Html.Raw("</tr><tr>")
+                                        c = 21;
+                                    }
+                                    else if (c == 14)
+                                    {
+                                        @Html.Raw("</tr><tr>")
+                                        c = 28;
+                                    }
+                                }
+                            }
+                        }
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+
+        <tr>
+            <th class="msmheader">Total Clicks</th>
+            <th class="msmheader">
+                <table class="DateTable white">
+                    <tr><td>@ViewBag._CTQDatestring[0].ToString()</td></tr>
+                    <tr><td>@ViewBag._CTQDatestring[1].ToString()</td></tr>
+                    <tr><td>@ViewBag._CTQDatestring[2].ToString()</td></tr>
+                    <tr><td>@ViewBag._CTQDatestring[3].ToString()</td></tr>
+                </table>
+            </th>
+
+            <td>
+                <table id="innerTable">
+                    <tr>
+                        @{
+                            if (_MSMTC.Count <= 7)
+                            {
+                                c = _MSMTC.Count - 1;
+                            }
+                            else
+                            {
+                                c = 7;
+                            }
+
+                            if (_MSMTC != null)
+                            {
+                                for (int d = 0; d < _MSMTC.Count; d++)
+                                {
+                                    <td>@_MSMTC[c].ToString()</td>
+                                    c = c - 1;
+
+                                    if (c == -1)
+                                    {
+                                        @Html.Raw("</tr><tr>")
+                                        c = 14;
+                                    }
+                                    else if (c == 7)
+                                    {
+                                        @Html.Raw("</tr><tr>")
+                                        c = 21;
+                                    }
+                                    else if (c == 14)
+                                    {
+                                        @Html.Raw("</tr><tr>")
+                                        c = 28;
+                                    }
+                                }
+                            }
+                        }
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+
+        <tr>
+            <th class="msmheader">Provider Quote Rate</th>
+            <th class="msmheader">
+                <table class="DateTable white">
+                    <tr><td>@ViewBag._CTQDatestring[0].ToString()</td></tr>
+                    <tr><td>@ViewBag._CTQDatestring[1].ToString()</td></tr>
+                    <tr><td>@ViewBag._CTQDatestring[2].ToString()</td></tr>
+                    <tr><td>@ViewBag._CTQDatestring[3].ToString()</td></tr>
+                </table>
+            </th>
+
+            <td>
+                <table id="innerTable">
+                    <tr>
+                        @{
+                            if (_MSMPQR.Count <= 7)
+                            {
+                                c = _MSMPQR.Count - 1;
+                            }
+                            else
+                            {
+                                c = 7;
+                            }
+
+                            if (_MSMPQR != null)
+                            {
+
+                                for (int d = 0; d < _MSMPQR.Count; d++)
+                                {
+                                    <td>@_MSMPQR[c].ToString()</td>
+                                    c = c - 1;
+
+                                    if (c == -1)
+                                    {
+                                        @Html.Raw("</tr><tr>")
+                                        c = 14;
+                                    }
+                                    else if (c == 7)
+                                    {
+                                        @Html.Raw("</tr><tr>")
+                                        c = 21;
+                                    }
+                                    else if (c == 14)
+                                    {
+                                        @Html.Raw("</tr><tr>")
+                                        c = 28;
+                                    }
+                                }
+                            }
+                        }
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+
+        <tr>
+            <th class="msmheader">Filtered Quotes</th>
+            <th class="msmheader">
+                <table class="DateTable white">
+                    <tr><td>@ViewBag._CTQDatestring[0].ToString()</td></tr>
+                    <tr><td>@ViewBag._CTQDatestring[1].ToString()</td></tr>
+                    <tr><td>@ViewBag._CTQDatestring[2].ToString()</td></tr>
+                    <tr><td>@ViewBag._CTQDatestring[3].ToString()</td></tr>
+                </table>
+            </th>
+
+            <td>
+                <table id="innerTable">
+                    <tr>
+                        @{
+                            if (_MSMFQ.Count <= 7)
+                            {
+                                c = _MSMFQ.Count - 1;
+                            }
+                            else
+                            {
+                                c = 7;
+                            }
+
+                            if (_MSMFQ != null)
+                            {
+
+                                for (int d = 0; d < _MSMFQ.Count; d++)
+                                {
+                                    <td>@_MSMFQ[c].ToString()</td>
+                                    c = c - 1;
+
+                                    if (c == -1)
+                                    {
+                                        @Html.Raw("</tr><tr>")
+                                        c = 14;
+                                    }
+                                    else if (c == 7)
+                                    {
+                                        @Html.Raw("</tr><tr>")
+                                        c = 21;
+                                    }
+                                    else if (c == 14)
+                                    {
+                                        @Html.Raw("</tr><tr>")
+                                        c = 28;
+                                    }
+                                }
+
+                            }
+                        }
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+
+        <tr>
+            <th class="msmheader">Top Quotes</th>
+            <th class="msmheader">
+                <table class="DateTable white">
+                    <tr><td>@ViewBag._CTQDatestring[0].ToString()</td></tr>
+                    <tr><td>@ViewBag._CTQDatestring[1].ToString()</td></tr>
+                    <tr><td>@ViewBag._CTQDatestring[2].ToString()</td></tr>
+                    <tr><td>@ViewBag._CTQDatestring[3].ToString()</td></tr>
+                </table>
+            </th>
+
+            <td>
+                <table id="innerTable">
+                    <tr>
+                        @{
+                            if (_MSMTQS.Count <= 7)
+                            {
+                                c = _MSMTQS.Count - 1;
+                            }
+                            else
+                            {
+                                c = 7;
+                            }
+
+                            if (_MSMTQS != null)
+                            {
+                                for (int d = 0; d < _MSMTQS.Count; d++)
+                                {
+                                    <td>@_MSMTQS[c].ToString()</td>
+                                    c = c - 1;
+
+                                    if (c == -1)
+                                    {
+                                        @Html.Raw("</tr><tr>")
+                                        c = 14;
+                                    }
+                                    else if (c == 7)
+                                    {
+                                        @Html.Raw("</tr><tr>")
+                                        c = 21;
+                                    }
+                                    else if (c == 14)
+                                    {
+                                        @Html.Raw("</tr><tr>")
+                                        c = 28;
+                                    }
+                                }
+                            }
+                        }
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <br />
+</div>
+
+<!--------------------------------------------------------------->
+
+
+<div class="col-md-12" id="EmailResult">
+    <input type="button" value=" 3. Send Email" id="btnSendEmail" class=" btn btn-primary btn-lg btn-block" />
+</div>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('#btnSendEmail').click(function () {
+
+                $.ajax({
+                    url: '@Url.Action("SendEmail", "DailyQuotes")',
+                    cashe: false,
+                    type: 'POST',
+                    beforeSend: function (data){
+                        $('#EmailResult').html('<img id = "ajax" src="/Content/Images/ajax-loader.gif" />');
+                    },
+                    success: function (data) {
+                        $('#EmailResult').html(data);
+                    }
+                });
+            });
+        });
+
+    </script>
+}
